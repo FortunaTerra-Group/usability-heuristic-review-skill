@@ -1,0 +1,11 @@
+{
+  "name": "usability-heuristic-review",
+  "description": "Inspect an already-shipped UI surface against Jakob Nielsen's 10 usability heuristics with severity scoring, a cross-surface consistency audit, and a persona-resonance check.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Vivek Iyer",
+    "url": "https://github.com/FortunaTerra-Group"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/FortunaTerra-Group/usability-heuristic-review-skill"
+}
