@@ -32,10 +32,11 @@ git clone https://github.com/FortunaTerra-Group/usability-heuristic-review-skill
 cp -r usability-heuristic-review-skill/skills/usability-heuristic-review .claude/skills/
 ```
 
-Or load the repository as a plugin for one session:
+Or install it as a plugin from FortunaTerra's marketplace:
 
 ```bash
-claude --plugin-dir ./usability-heuristic-review-skill
+claude plugin marketplace add FortunaTerra-Group/claude-plugins
+claude plugin install usability-heuristic-review@fortunaterra
 ```
 
 Then invoke `/usability-heuristic-review` with the surface (URL, build, or screenshots) and a
