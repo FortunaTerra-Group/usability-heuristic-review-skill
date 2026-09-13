@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contoso Cloud - Usage Dashboard</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+    background: #f4f5f7;
+    color: #1a1a1a;
+  }
+  header {
+    background: #1f2933;
+    color: #ffffff;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header .brand {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+  /* Seeded defect: focus outlines are removed globally with no replacement
+     focus style, so a keyboard-only user cannot see which link, button, or
+     field currently has focus anywhere on the page. */
+  a:focus, button:focus, input:focus {
+    outline: none;
+  }
+  main {
+    max-width: 960px;
+    margin: 32px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+  .card.full-width {
+    grid-column: 1 / -1;
+  }
+  .card h2 {
+    margin: 0 0 12px 0;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #4b5563;
+  }
+  .usage-bar {
+    width: 100%;
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .usage-bar-fill {
+    height: 100%;
+    width: 72%;
+    background: #2563eb;
+  }
+  /* Seeded defect: this figure is a bare pair of numbers with no unit
+     anywhere on the card (not "requests", "calls", "MB", or any noun),
+     so a reader cannot tell what is being measured. */
+  .usage-figure {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+  }
+  .usage-caption {
+    font-size: 13px;
+    color: #6b7280;
+  }
+  /* Seeded defect: #aaaaaa on a white card background is roughly a 2.3:1
+     contrast ratio, well under the WCAG AA minimum of 4.5:1 for normal
+     text (and under the 3:1 large-text minimum too). */
+  .hint {
+    color: #aaaaaa;
+    font-size: 13px;
+    margin-top: 14px;
+  }
+  /* Seeded defect: this text is static markup, not derived from any
+     fetch or render timestamp. It reads "Updated 2 minutes ago" no
+     matter when the page was generated or when it is viewed. */
+  .last-updated {
+    font-size: 12px;
+    color: #9ca3af;
+    display: inline-block;
+    margin-top: 8px;
+  }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { font-size: 14px; color: #4b5563; }
+  .stat-value { font-size: 14px; font-weight: 600; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  td {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  button.primary {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  button.secondary {
+    background: transparent;
+    border: 1px solid #d1d5db;
+    padding: 8px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Contoso Cloud</div>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#team">Team</a>
+    <a href="#billing">Billing</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="card" id="overview" aria-label="API usage">
+    <h2>API Usage</h2>
+    <div class="usage-bar">
+      <div class="usage-bar-fill"></div>
+    </div>
+    <!-- Seeded defect: no unit noun anywhere near this figure. -->
+    <p class="usage-figure">14,382 / 20,000</p>
+    <p class="usage-caption">Current billing period</p>
+    <p class="hint">Usage resets on the 1st of each month.</p>
+    <!-- Seeded defect: hardcoded relative-time string, not a real timestamp. -->
+    <span class="last-updated">Updated 2 minutes ago</span>
+  </section>
+
+  <section class="card" id="team" aria-label="Team">
+    <h2>Team</h2>
+    <div class="stat-row">
+      <span class="stat-label">Seats</span>
+      <!-- Seeded defect: this card says "Seats"; the Billing card below
+           says "Licenses" for the identical underlying count. -->
+      <span class="stat-value">8 of 10 used</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Pending invites</span>
+      <span class="stat-value">1</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Admins</span>
+      <span class="stat-value">2</span>
+    </div>
+    <button class="primary">Invite teammate</button>
+  </section>
+
+  <section class="card" id="billing" aria-label="Billing">
+    <h2>Billing</h2>
+    <div class="stat-row">
+      <span class="stat-label">Plan</span>
+      <span class="stat-value">Growth</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Licenses in use</span>
+      <!-- Same count as "Seats" above, different term. -->
+      <span class="stat-value">8</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Next invoice</span>
+      <span class="stat-value">$249.00</span>
+    </div>
+    <button class="secondary">View invoices</button>
+  </section>
+
+  <section class="card full-width" aria-label="Recent activity">
+    <h2>Recent Activity</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Actor</th>
+          <th>When</th>
+        </tr>
+      </thead>
+      <!-- Seeded defect: this account has no recent activity, and the
+           table body is simply empty. There is no "No recent activity
+           yet" row, no loading indicator, and no distinction between
+           "nothing has happened" and "this failed to load". -->
+      <tbody>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+</body>
+</html>
