@@ -42,6 +42,14 @@ claude plugin install usability-heuristic-review@fortunaterra
 Then invoke `/usability-heuristic-review` with the surface (URL, build, or screenshots) and a
 pointer to the product's persona documentation.
 
+## What this plugin runs and sends
+
+The plugin is one skill file (`skills/usability-heuristic-review/SKILL.md`) and a manifest (`.claude-plugin/plugin.json`). It contains no hooks, no MCP servers, no scripts, no binaries and no executable code, so installing it executes nothing. The repository also holds `examples/toy-dashboard.html`, a static sample page used by the worked example; it has no scripts and makes no requests, and it is not part of the skill.
+
+When you invoke the skill, it instructs the agent to inspect the UI surface you point it at (a live URL, a build, or screenshots) and the product's own persona documentation, then produce a findings report. The skill does not name any tool for this. How the surface is opened, whether by a browser tool, a fetch tool, or files you supply, depends entirely on what is enabled in your Claude Code session and on your permission settings.
+
+The skill does not tell the agent to write or modify any file; the report is returned in the conversation unless you ask for it to be saved. The plugin makes no network requests of its own, has no server or telemetry, and sends nothing to FortunaTerra. Anything the agent reads is processed by the model in your session as any other content is.
+
 ## Where it fits
 
 This is the after-the-fact lens: it looks at what shipped, not at what was planned. It pairs with
