@@ -39,7 +39,7 @@ claude plugin marketplace add FortunaTerra-Group/claude-plugins
 claude plugin install usability-heuristic-review@fortunaterra
 ```
 
-Then invoke `/usability-heuristic-review` with the surface (URL, build, or screenshots) and a
+Then invoke the skill, as `/usability-heuristic-review` if you copied it into `.claude/skills/` or `/usability-heuristic-review:usability-heuristic-review` if you installed the plugin, with the surface (URL, build, or screenshots) and a
 pointer to the product's persona documentation.
 
 ## What this plugin runs and sends
